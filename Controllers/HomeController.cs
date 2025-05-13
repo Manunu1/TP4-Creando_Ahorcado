@@ -18,4 +18,9 @@ public class HomeController : Controller
         ViewBag.palabra = Ahorcado.devolverPalabra();
         return View();
     }
+    public IActionResult AdivinarLetra(char letra)
+    {
+        ViewBag.coinciden = Ahorcado.chequearLetra(letra);
+        return View(Index);
+    }
 }

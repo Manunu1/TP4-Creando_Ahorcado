@@ -21,7 +21,7 @@ public class Ahorcado
     {
         return palabraElegida;
     }
-    public bool chequearLetra(char letraAdivinada)
+    public static bool chequearLetra(char letraAdivinada)
     {
         bool coinciden = false;
         foreach (char letra in palabraElegida)
