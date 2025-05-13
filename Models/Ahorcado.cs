@@ -4,9 +4,9 @@ public class Ahorcado
 {
     public int intentos {get; private set;}
     public static List<string> posiblesPalabras {get; private set;}
+    public static string palabraElegida = elegirPalabra();
     public static string elegirPalabra()
     {
-        string palabra = "";
         posiblesPalabras = new List<string>();
         posiblesPalabras.Add("COMPUTADORA");
         posiblesPalabras.Add("INFORMATICA");
@@ -15,7 +15,22 @@ public class Ahorcado
         posiblesPalabras.Add("GRACIAS");
         Random random = new Random();
         int clavePalabra = random.Next(0, 4);
-        palabra = posiblesPalabras[clavePalabra];
-        return palabra;
+        return posiblesPalabras[clavePalabra];
+    }
+    public static string devolverPalabra()
+    {
+        return palabraElegida;
+    }
+    public bool chequearLetra(char letraAdivinada)
+    {
+        bool coinciden = false;
+        foreach (char letra in palabraElegida)
+        {
+            if (letraAdivinada == letra)
+            {
+                coinciden = true;
+            }
+        }
+        return coinciden;
     }
 }
