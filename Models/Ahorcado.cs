@@ -33,4 +33,13 @@ public class Ahorcado
         }
         return coinciden;
     }
+    public static bool chequearPalabra(string palabraAdivinada)
+    {
+        bool coinciden = false;
+            if (palabraAdivinada == palabraElegida)
+            {
+                coinciden = true;
+            }
+        return coinciden;
+    }
 }

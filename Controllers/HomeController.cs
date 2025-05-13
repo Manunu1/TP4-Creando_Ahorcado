@@ -20,7 +20,12 @@ public class HomeController : Controller
     }
     public IActionResult AdivinarLetra(char letra)
     {
-        ViewBag.coinciden = Ahorcado.chequearLetra(letra);
-        return View(Index);
+        ViewBag.coincideLetra = Ahorcado.chequearLetra(letra);
+        return View("Index");
+    }
+    public IActionResult AdivinarLetra(string palabra)
+    {
+        ViewBag.coincidePalabra = Ahorcado.chequearPalabra(palabra);
+        return View("Index");
     }
 }
