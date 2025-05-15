@@ -3,9 +3,10 @@ namespace TP4_Creando_Ahorcado;
 public class Ahorcado
 {
     public int intentos {get; private set;}
-    public static List<string> posiblesPalabras {get; private set;}
+    public static List<string> posiblesPalabras {get; private set;}= new List<string>();
     public static string palabraElegida = elegirPalabra();
-    public static string elegirPalabra()
+    static char[] arrayPalabra = esconderPalabra();
+    private static string elegirPalabra()
     {
         posiblesPalabras = new List<string>();
         posiblesPalabras.Add("COMPUTADORA");
@@ -17,21 +18,19 @@ public class Ahorcado
         int clavePalabra = random.Next(0, 4);
         return posiblesPalabras[clavePalabra];
     }
-    public static string devolverPalabra()
+    public static char[] devolverPalabra()
     {
-        return palabraElegida;
+        return arrayPalabra;
     }
-    public static bool chequearLetra(char letraAdivinada)
+    public static void chequearLetra(char letraAdivinada)
     {
-        bool coinciden = false;
-        foreach (char letra in palabraElegida)
+        for (int i = 0; i < palabraElegida.Length; i++)
         {
-            if (letraAdivinada == letra)
+            if (letraAdivinada == palabraElegida[i])
             {
-                coinciden = true;
+                arrayPalabra[i] = letraAdivinada;
             }
         }
-        return coinciden;
     }
     public static bool chequearPalabra(string palabraAdivinada)
     {
@@ -41,5 +40,14 @@ public class Ahorcado
                 coinciden = true;
             }
         return coinciden;
+    }
+    private static char[] esconderPalabra()
+    {
+        char[] palabraEscondida = new char[palabraElegida.Length];
+        for (int i = 0; i < palabraElegida.Length; i++)
+        {
+            palabraEscondida[i] = '_';
+        }
+        return palabraEscondida;
     }
 }
