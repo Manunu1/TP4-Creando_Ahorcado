@@ -6,13 +6,25 @@
     <span>@letra</span>
 }
 <p>Letras usadas:</p>
-<p>Intentos: </p>
+@foreach (char letra in ViewBag.letrasUsadas)
+{
+    <span>@letra,</span>
+}
+<p>Intentos: @ViewBag.intentos</p>
 <form action='@Url.Action("AdivinarLetra", "Home")' method="POST" enctype="multipart/form-data">
     <input type = "text" maxlength="1" name="letra">
     <input type="submit" value="Arriesgar letra">
 </form>
 <br><br>
 <form action='@Url.Action("AdivinarPalabra", "Home")' method="POST" enctype="multipart/form-data">
-    <input type = "search">
-    <input type="button" value="Arriesgar palabra">
+    <input type = "text" name="palabra">
+    <input type="submit" value="Arriesgar palabra">
 </form>
+@if (ViewBag.adivinoPalabra != null && ViewBag.adivinoPalabra)
+{
+    @Url.Action("usuarioGana", "Home")
+}
+else if (ViewBag.adivinoPalabra != null && !ViewBag.adivinoPalabra)
+{
+    @Url.Action("usuarioPierde", "Home")
+}

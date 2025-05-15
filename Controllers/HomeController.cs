@@ -16,18 +16,33 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         ViewBag.palabra = Ahorcado.devolverPalabra();
+        ViewBag.intentos = Ahorcado.devolverIntentos();
+        ViewBag.letrasUsadas = Ahorcado.devolverLetrasUsadas();
         return View();
     }
     public IActionResult AdivinarLetra(char letra)
     {
         Ahorcado.chequearLetra(letra);
         ViewBag.palabra = Ahorcado.devolverPalabra();
+        ViewBag.intentos = Ahorcado.devolverIntentos();
+        ViewBag.letrasUsadas = Ahorcado.devolverLetrasUsadas();
         return View("Index");
     }
     public IActionResult AdivinarPalabra(string palabra)
     {
-        ViewBag.palabra = Ahorcado.devolverPalabra();
-        Ahorcado.chequearPalabra(palabra);
-        return View("Index");
+        ViewBag.intentos = Ahorcado.devolverIntentos();
+        if (Ahorcado.chequearPalabra(palabra))
+        {
+            return View("Ganaste");
+        }
+        return View("Perdiste");
+    }
+    public IActionResult usuarioGana()
+    {
+        return View("Ganaste");
+    }
+        public IActionResult usuarioPierde()
+    {
+        return View("Perdiste");
     }
 }

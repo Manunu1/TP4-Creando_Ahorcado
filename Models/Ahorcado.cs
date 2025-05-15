@@ -2,10 +2,12 @@ namespace TP4_Creando_Ahorcado;
 
 public class Ahorcado
 {
-    public int intentos {get; private set;}
-    public static List<string> posiblesPalabras {get; private set;}= new List<string>();
+    public static int intentos = 0;
+    public static List<string> posiblesPalabras = new List<string>();
     public static string palabraElegida = elegirPalabra();
     static char[] arrayPalabra = esconderPalabra();
+    public static List<char> letrasUsadas = new List<char>();
+    static bool adivinoPalabra = false;
     private static string elegirPalabra()
     {
         posiblesPalabras = new List<string>();
@@ -31,15 +33,19 @@ public class Ahorcado
                 arrayPalabra[i] = letraAdivinada;
             }
         }
+        intentos++;
+        letrasUsadas.Add(letraAdivinada);
     }
     public static bool chequearPalabra(string palabraAdivinada)
     {
-        bool coinciden = false;
             if (palabraAdivinada == palabraElegida)
             {
-                coinciden = true;
+                return true ;          
             }
-        return coinciden;
+            else
+            {
+                return false;
+            }
     }
     private static char[] esconderPalabra()
     {
@@ -49,5 +55,13 @@ public class Ahorcado
             palabraEscondida[i] = '_';
         }
         return palabraEscondida;
+    }
+    public static int devolverIntentos()
+    {
+        return intentos;
+    }
+    public static List<char> devolverLetrasUsadas()
+    {
+        return letrasUsadas;
     }
 }
