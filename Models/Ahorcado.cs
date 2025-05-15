@@ -7,7 +7,6 @@ public class Ahorcado
     public static string palabraElegida = elegirPalabra();
     static char[] arrayPalabra = esconderPalabra();
     public static List<char> letrasUsadas = new List<char>();
-    static bool adivinoPalabra = false;
     private static string elegirPalabra()
     {
         posiblesPalabras = new List<string>();
@@ -33,8 +32,11 @@ public class Ahorcado
                 arrayPalabra[i] = letraAdivinada;
             }
         }
-        intentos++;
-        letrasUsadas.Add(letraAdivinada);
+        if (!letrasUsadas.Contains(letraAdivinada))
+        {
+            intentos++;
+            letrasUsadas.Add(letraAdivinada);
+        }
     }
     public static bool chequearPalabra(string palabraAdivinada)
     {

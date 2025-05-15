@@ -15,10 +15,15 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        return View();
+    }
+
+    public IActionResult iniciarJuego()
+    {
         ViewBag.palabra = Ahorcado.devolverPalabra();
         ViewBag.intentos = Ahorcado.devolverIntentos();
         ViewBag.letrasUsadas = Ahorcado.devolverLetrasUsadas();
-        return View();
+        return View("Juego");
     }
     public IActionResult AdivinarLetra(char letra)
     {
@@ -26,7 +31,7 @@ public class HomeController : Controller
         ViewBag.palabra = Ahorcado.devolverPalabra();
         ViewBag.intentos = Ahorcado.devolverIntentos();
         ViewBag.letrasUsadas = Ahorcado.devolverLetrasUsadas();
-        return View("Index");
+        return View("Juego");
     }
     public IActionResult AdivinarPalabra(string palabra)
     {
