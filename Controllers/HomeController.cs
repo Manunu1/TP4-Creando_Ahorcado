@@ -37,6 +37,7 @@ public class HomeController : Controller
     public IActionResult AdivinarPalabra(string palabra)
     {
         palabra = palabra.ToUpper();
+        
         ViewBag.intentos = Ahorcado.devolverIntentos();
         if (Ahorcado.chequearPalabra(palabra))
         {
