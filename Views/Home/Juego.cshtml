@@ -13,10 +13,10 @@
 <p>Intentos: @ViewBag.intentos</p>
 <form action='@Url.Action("AdivinarLetra", "Home")' method="POST" enctype="multipart/form-data">
     <input type = "text" maxlength="1" name="letra">
-    <input type="submit" value="Arriesgar letra">
+    <input class = "arriesgar" type="submit" value="Arriesgar letra">
 </form>
 <br><br>
 <form action='@Url.Action("AdivinarPalabra", "Home")' method="POST" enctype="multipart/form-data">
     <input type = "text" name="palabra">
-    <input type="submit" value="Arriesgar palabra">
+    <input class = "arriesgar" type="submit" value="Arriesgar palabra">
 </form>
