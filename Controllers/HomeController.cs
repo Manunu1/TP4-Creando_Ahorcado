@@ -27,6 +27,7 @@ public class HomeController : Controller
     }
     public IActionResult AdivinarLetra(char letra)
     {
+        letra = Char.ToUpper(letra);
         Ahorcado.chequearLetra(letra);
         ViewBag.palabra = Ahorcado.devolverPalabra();
         ViewBag.intentos = Ahorcado.devolverIntentos();
@@ -35,6 +36,7 @@ public class HomeController : Controller
     }
     public IActionResult AdivinarPalabra(string palabra)
     {
+        palabra = palabra.ToUpper();
         ViewBag.intentos = Ahorcado.devolverIntentos();
         if (Ahorcado.chequearPalabra(palabra))
         {
