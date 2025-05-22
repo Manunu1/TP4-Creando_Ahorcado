@@ -2,12 +2,12 @@ namespace TP4_Creando_Ahorcado;
 
 public class Ahorcado
 {
-    public static int intentos = 0;
-    public static List<string> posiblesPalabras = new List<string>();
-    public static string palabraElegida = elegirPalabra();
-    static char[] arrayPalabra = esconderPalabra();
-    public static List<char> letrasUsadas = new List<char>();
-    private static string elegirPalabra()
+    public  int intentos = 0;
+    public  List<string> posiblesPalabras = new List<string>();
+    public  string palabraElegida;
+    public char[] arrayPalabra;
+    public  List<char> letrasUsadas = new List<char>();
+    public  string elegirPalabra()
     {
         posiblesPalabras = new List<string>();
         posiblesPalabras.Add("COMPUTADORA");
@@ -17,13 +17,15 @@ public class Ahorcado
         posiblesPalabras.Add("GRACIAS");
         Random random = new Random();
         int clavePalabra = random.Next(0, 4);
-        return posiblesPalabras[clavePalabra];
+        palabraElegida = posiblesPalabras[clavePalabra];
+        arrayPalabra = esconderPalabra();
+        return palabraElegida;
     }
-    public static char[] devolverPalabra()
+    public  char[] devolverPalabra()
     {
         return arrayPalabra;
     }
-    public static void chequearLetra(char letraAdivinada)
+    public  void chequearLetra(char letraAdivinada)
     {
         for (int i = 0; i < palabraElegida.Length; i++)
         {
@@ -38,7 +40,7 @@ public class Ahorcado
             letrasUsadas.Add(letraAdivinada);
         }
     }
-    public static bool chequearPalabra(string palabraAdivinada)
+    public  bool chequearPalabra(string palabraAdivinada)
     {
             if (palabraAdivinada == palabraElegida)
             {
@@ -49,7 +51,7 @@ public class Ahorcado
                 return false;
             }
     }
-    private static char[] esconderPalabra()
+    private char[] esconderPalabra()
     {
         char[] palabraEscondida = new char[palabraElegida.Length];
         for (int i = 0; i < palabraElegida.Length; i++)
@@ -58,11 +60,11 @@ public class Ahorcado
         }
         return palabraEscondida;
     }
-    public static int devolverIntentos()
+    public  int devolverIntentos()
     {
         return intentos;
     }
-    public static List<char> devolverLetrasUsadas()
+    public  List<char> devolverLetrasUsadas()
     {
         return letrasUsadas;
     }

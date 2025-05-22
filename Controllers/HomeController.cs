@@ -20,26 +20,36 @@ public class HomeController : Controller
 
     public IActionResult iniciarJuego()
     {
-        ViewBag.palabra = Ahorcado.devolverPalabra();
-        ViewBag.intentos = Ahorcado.devolverIntentos();
-        ViewBag.letrasUsadas = Ahorcado.devolverLetrasUsadas();
+        Ahorcado juego = new Ahorcado();
+        juego.elegirPalabra();
+
+        ViewBag.palabra = juego.devolverPalabra();
+        ViewBag.intentos = juego.devolverIntentos();
+        ViewBag.letrasUsadas = juego.devolverLetrasUsadas();
+        
+        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(juego));
         return View("Juego");
     }
     public IActionResult AdivinarLetra(char letra)
     {
+        Ahorcado juego = Objeto.StringToObject<Ahorcado>(HttpContext.Session.GetString("Juego"));
         letra = Char.ToUpper(letra);
-        Ahorcado.chequearLetra(letra);
-        ViewBag.palabra = Ahorcado.devolverPalabra();
-        ViewBag.intentos = Ahorcado.devolverIntentos();
-        ViewBag.letrasUsadas = Ahorcado.devolverLetrasUsadas();
+        juego.chequearLetra(letra);
+        ViewBag.palabra = juego.devolverPalabra();
+        ViewBag.intentos = juego.devolverIntentos();
+        ViewBag.letrasUsadas = juego.devolverLetrasUsadas();
+        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(juego));
         return View("Juego");
     }
     public IActionResult AdivinarPalabra(string palabra)
     {
+        Ahorcado juego = Objeto.StringToObject<Ahorcado>(HttpContext.Session.GetString("Juego"));
+
         palabra = palabra.ToUpper();
         
-        ViewBag.intentos = Ahorcado.devolverIntentos();
-        if (Ahorcado.chequearPalabra(palabra))
+        ViewBag.intentos = juego.devolverIntentos();
+        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(juego));
+        if (juego.chequearPalabra(palabra))
         {
             return View("Ganaste");
         }
